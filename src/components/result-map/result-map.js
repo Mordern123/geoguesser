@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import mapLoader from "../../utils/map-loader";
 import { MAP_CONFIG } from './map-config';
 import './result-map.css';
 
@@ -10,7 +9,6 @@ const ResultMap = () => {
 
   useEffect(() => {
     const loadMap = async () => {
-      await mapLoader.load();
       const google = window.google;
       
       const map = new google.maps.Map(mapRef.current, {

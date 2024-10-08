@@ -170,7 +170,7 @@ const googleMapStyles = [
 ]
 export const MAP_CONFIG = {
     CENTER: { lat: 23.5, lng: 121 },
-    ZOOM_LEVELS: { initial: 2, min: 2, max: 9 },
+    ZOOM_LEVELS: { initial: 6, min: 6, max: 16 },
     BOUNDS: {
         north: 85,
         south: -85,

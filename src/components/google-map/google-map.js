@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { MAP_CONFIG } from "./map-config";
-import mapLoader from "../../utils/map-loader";
 import { useDispatch } from 'react-redux';
 import { setGuessedPosition, calculateScore } from '../../store/game-slice';
 import "./google-map.css";
@@ -16,7 +15,6 @@ const GoogleMap = () => {
 
   useEffect(() => {
     const loadMap = async () => {
-      await mapLoader.load();
       const google = window.google;
       const map = new google.maps.Map(mapRef.current, {
         center: MAP_CONFIG.CENTER,
@@ -37,17 +35,15 @@ const GoogleMap = () => {
       map.addListener("click", (event) => {
         const lat = event.latLng.lat();
         const lng = event.latLng.lng();
-        console.log(`Latitude: ${lat}, Longitude: ${lng}`);
 
         marker.setPosition({ lat, lng });
         setMarkedPosition({ lat, lng });
-        console.log({ lat, lng })
         dispatch(setGuessedPosition({ lat, lng }));
       });
     };
 
     loadMap();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const container = containerRef.current;
